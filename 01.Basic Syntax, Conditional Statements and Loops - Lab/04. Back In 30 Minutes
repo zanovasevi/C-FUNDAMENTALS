@@ -1,0 +1,31 @@
+using System;
+
+namespace _28._01._19
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int h = int.Parse(Console.ReadLine());
+            int m = int.Parse(Console.ReadLine());
+
+            int minutes = (h * 60) + m + 30;
+
+            int hour = minutes / 60;
+            int min = minutes % 60;
+
+            if(hour > 23)
+			{
+                hour = 0;
+			}
+            if(min < 10)
+			{
+                Console.WriteLine($"{hour}:0{min}");
+			}
+            else
+			{
+                Console.WriteLine($"{hour}:{min}");
+			}
+        }
+    }
+}
