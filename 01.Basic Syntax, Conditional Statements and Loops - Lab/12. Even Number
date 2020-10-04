@@ -1,0 +1,25 @@
+using System;
+
+namespace Exams
+{
+    class Program
+    {
+        static void Main(string [] args)
+        {
+             while(true)
+            {
+                int even = int.Parse(Console.ReadLine());
+
+                if (even % 2 == 0)
+                {
+                    Console.WriteLine($"The number is: {Math.Abs(even)}");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Please write an even number.");
+                }
+            }
+        }
+    }
+}
