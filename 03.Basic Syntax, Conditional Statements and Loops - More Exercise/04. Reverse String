@@ -1,0 +1,20 @@
+using System;
+
+namespace _14.Reverse_String
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string name = Console.ReadLine();
+
+            string reverse = "";
+
+            for(int i = name.Length - 1; i >= 0; i--)
+            {
+                reverse += name[i];
+            }
+            Console.WriteLine(reverse);
+        }
+    }
+}
