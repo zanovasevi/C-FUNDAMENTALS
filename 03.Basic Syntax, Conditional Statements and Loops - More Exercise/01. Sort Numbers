@@ -1,0 +1,42 @@
+using System;
+
+namespace _11.Sort_Numbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n1 = int.Parse(Console.ReadLine());
+            int n2 = int.Parse(Console.ReadLine());
+            int n3 = int.Parse(Console.ReadLine());
+
+            int max = Math.Max(n1, n2);
+            int maxx = Math.Max(max, n3);
+
+            if(maxx == n1)
+            {
+                int MAX = Math.Max(n2, n3);
+                int MIN = Math.Min(n2, n3);
+                Console.WriteLine(maxx);
+                Console.WriteLine(MAX);
+                Console.WriteLine(MIN);
+            }
+            else if(maxx == n2)
+            {
+                int MAX = Math.Max(n1, n3);
+                int MIN = Math.Min(n1, n3);
+                Console.WriteLine(maxx);
+                Console.WriteLine(MAX);
+                Console.WriteLine(MIN);
+            }
+            else if(maxx == n3)
+            {
+                int MAX = Math.Max(n2, n1);
+                int MIN = Math.Min(n2, n1);
+                Console.WriteLine(maxx);
+                Console.WriteLine(MAX);
+                Console.WriteLine(MIN);
+            }
+        }
+    }
+}
