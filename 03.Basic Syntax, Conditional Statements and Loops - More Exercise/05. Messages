@@ -1,0 +1,129 @@
+using System;
+
+namespace _15.Messages
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num = int.Parse(Console.ReadLine());
+
+            string word = "";
+
+            for(int i = 1; i <= num; i++)
+            {
+                int n = int.Parse(Console.ReadLine());
+
+                if (n == 2)
+                {
+                    word += "a";
+                }
+                else if (n == 22)
+                {
+                    word += "b";
+                }
+                else if (n == 222)
+                {
+                    word += "c";
+                }
+                else if (n == 3)
+                {
+                    word += "d";
+                }
+                else if (n == 33)
+                {
+                    word += "e";
+                }
+                else if (n == 333)
+                {
+                    word += "f";
+                }
+                else if (n == 4)
+                {
+                    word += "g";
+                }
+                else if (n == 44)
+                {
+                    word += "h";
+                }
+                else if (n == 444)
+                {
+                    word += "i";
+                }
+                else if (n == 5)
+                {
+                    word += "j";
+                }
+                else if (n == 55)
+                {
+                    word += "k";
+                }
+                else if (n == 555)
+                {
+                    word += "l";
+                }
+                else if (n == 6)
+                {
+                    word += "m";
+                }
+                else if (n == 66)
+                {
+                    word += "n";
+                }
+                else if (n == 666)
+                {
+                    word += "o";
+                }
+                else if (n == 7)
+                {
+                    word += "p";
+                }
+                else if (n == 77)
+                {
+                    word += "q";
+                }
+                else if (n == 777)
+                {
+                    word += "r";
+                }
+                else if (n == 7777)
+                {
+                    word += "s";
+                }
+                else if (n == 8)
+                {
+                    word += "t";
+                }
+                else if (n == 88)
+                {
+                    word += "u";
+                }
+                else if (n == 888)
+                {
+                    word += "v";
+                }
+                else if (n == 9)
+                {
+                    word += "w";
+                }
+                else if (n == 99)
+                {
+                    word += "x";
+                }
+                else if (n == 999)
+                {
+                    word += "y";
+                }
+                else if (n == 9999)
+                {
+                    word += "z";
+                }
+                else if (n == 0)
+                {
+                    word += " ";
+                }
+            }
+            Console.WriteLine(word);
+        }
+    }
+}
