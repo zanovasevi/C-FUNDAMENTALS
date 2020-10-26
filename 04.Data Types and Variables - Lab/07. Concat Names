@@ -1,0 +1,18 @@
+using System;
+
+namespace _07.Contact_Names
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string name1 = Console.ReadLine();
+            string name2 = Console.ReadLine();
+            string deli = Console.ReadLine();
+
+            Console.Write(name1);
+            Console.Write(deli);
+            Console.Write(name2);
+        }
+    }
+}
