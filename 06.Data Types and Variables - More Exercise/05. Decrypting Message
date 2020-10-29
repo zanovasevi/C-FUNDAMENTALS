@@ -1,0 +1,29 @@
+using System;
+
+namespace _16.Decrypting_Messages
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int key = int.Parse(Console.ReadLine());
+            int howMuchLetters = int.Parse(Console.ReadLine());
+
+            string word = string.Empty;
+
+            for (int i = 1; i <= howMuchLetters; i++)
+            {
+                char letter = char.Parse(Console.ReadLine());
+
+                int convertToInt = (int)letter + key;
+
+                char convertToChar = (char)convertToInt;
+
+                string convertToString = convertToChar.ToString();
+
+                word = word + convertToString;
+            }
+            Console.WriteLine(word);
+        }
+    }
+}
