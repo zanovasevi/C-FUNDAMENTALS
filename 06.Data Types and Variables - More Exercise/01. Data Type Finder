@@ -1,0 +1,37 @@
+using System;
+
+namespace _12.Data_Type_Finder
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string data = Console.ReadLine();
+
+            while(data != "END")
+            {
+                if(int.TryParse(data, out int integer))
+                {
+                    Console.WriteLine($"{data} is integer type");
+                }
+                else if(float.TryParse(data, out float floatingPoint))
+                {
+                    Console.WriteLine($"{data} is floating point type");
+                }
+                else if(char.TryParse(data, out char characters))
+                {
+                    Console.WriteLine($"{data} is character type");
+                }
+                else if(bool.TryParse(data, out bool boolean))
+                {
+                    Console.WriteLine($"{data} is boolean type");
+                }
+                else
+                {
+                    Console.WriteLine($"{data} is string type");
+                }
+                data = Console.ReadLine();
+            }
+        }
+    }
+}
