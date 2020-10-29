@@ -1,0 +1,26 @@
+using System;
+
+namespace _15.Refactoring_Prime_Checker
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int input = int.Parse(Console.ReadLine());
+
+            for (int i = 2; i <= input; i++)
+            {
+                bool isPrime = true;
+                for(int y = 2; y < i; y++)
+                {
+                    if (i % y == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                Console.WriteLine($"{i} -> {isPrime.ToString().ToLower()}");
+            }   
+        }
+    }
+}
