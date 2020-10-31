@@ -1,0 +1,27 @@
+using System;
+using System.Text;
+
+namespace DEMO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string word = Console.ReadLine();
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine(PrintWordNtimes(word, n));
+        }
+
+        static string PrintWordNtimes(string word, int n)
+        {
+            StringBuilder result = new StringBuilder();
+            
+            for(int i = 0; i < n; i++)
+            {
+                result.Append(word);
+            }
+            string resultt = result.ToString();
+            return resultt;
+        }
+    }
+}
