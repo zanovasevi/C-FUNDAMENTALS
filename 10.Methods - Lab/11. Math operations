@@ -1,0 +1,60 @@
+using System;
+
+namespace _11.Math_Operations
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double num1 = double.Parse(Console.ReadLine());
+            string operation = Console.ReadLine();
+            double num2 = double.Parse(Console.ReadLine());
+
+            if(operation == "+")
+            {
+                Console.WriteLine(AddNumbers(num1, num2));
+            }
+            else if(operation == "*")
+            {
+                Console.WriteLine(MultiplyNumbers(num1, num2));
+            }
+            else if(operation == "-")
+            {
+                Console.WriteLine(SubtractNumbers(num1, num2));
+            }
+            else if(operation == "/")
+            {
+                Console.WriteLine(DivideNumbers(num1, num2));
+            }
+
+        }
+
+        static double AddNumbers(double first, double second)
+        {
+            double total = first + second;
+            total = Math.Round(total, 2);
+            return total;
+        }
+
+        static double MultiplyNumbers(double first, double second)
+        {
+            double total = first * second;
+            total = Math.Round(total, 2);
+            return total;
+        }
+
+        static double SubtractNumbers(double first, double second)
+        {
+            double total = first - second;
+            total = Math.Round(total, 2);
+            return total;
+        }
+
+        static double DivideNumbers(double first, double second)
+        {
+            double total = first / second;
+            total = Math.Round(total, 2);
+            return total;
+        }
+    }
+}
