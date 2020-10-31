@@ -1,0 +1,21 @@
+using System;
+using System.Text;
+
+namespace DEMO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double number = double.Parse(Console.ReadLine());
+            int pow = int.Parse(Console.ReadLine());
+
+            Console.WriteLine(PrintNumberPow(number, pow));
+        }
+
+        static double PrintNumberPow(double number, int pow)
+        {
+            return Math.Pow(number, pow);
+        }
+    }
+}
