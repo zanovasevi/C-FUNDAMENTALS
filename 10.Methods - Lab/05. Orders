@@ -1,0 +1,60 @@
+using System;
+
+namespace DEMO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string product = Console.ReadLine();
+
+            double quantity = double.Parse(Console.ReadLine());
+
+            if(product == "coffee")
+            {
+                CalculateCoffee(quantity);
+            }
+            else if (product == "water")
+            {
+                CalculateWater(quantity);
+            }
+            else if (product == "coke")
+            {
+                CalculateCoke(quantity);
+            }
+            else if (product == "snacks")
+            {
+                CalculateSnacks(quantity);
+            }
+        }
+
+        static void CalculateCoffee(double quantity)
+        {
+            double result = 0.00;
+            result = quantity * 1.50;
+            result = Math.Round(result, 2);
+            Console.WriteLine($"{result:F2}");
+        }
+        static void CalculateWater(double quantity)
+        {
+            double result = 0.00;
+            result = quantity * 1.00;
+            result = Math.Round(result, 2);
+            Console.WriteLine($"{result:F2}");
+        }
+        static void CalculateCoke(double quantity)
+        {
+            double result = 0.00;
+            result = quantity * 1.40;
+            result = Math.Round(result, 2);
+            Console.WriteLine($"{result:F2}");
+        }
+        static void CalculateSnacks(double quantity)
+        {
+            double result = 0.00;
+            result = quantity * 2.00;
+            result = Math.Round(result, 2);
+            Console.WriteLine($"{result:F2}");
+        }
+    }
+}
