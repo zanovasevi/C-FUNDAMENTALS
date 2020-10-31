@@ -1,0 +1,20 @@
+using System;
+
+namespace DEMO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int a = int.Parse(Console.ReadLine());
+            int b = int.Parse(Console.ReadLine());
+
+            Console.WriteLine(PrintArea(a, b));
+        }
+
+        static int PrintArea(int a, int b)
+        {
+            return a * b;
+        }
+    }
+}
