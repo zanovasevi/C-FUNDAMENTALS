@@ -1,0 +1,48 @@
+using System;
+
+namespace DEMO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string command = Console.ReadLine();
+            int first = int.Parse(Console.ReadLine());
+            int second = int.Parse(Console.ReadLine());
+
+            if(command == "add")
+            {
+                AddNumbers(first, second);
+            }
+            else if(command == "multiply")
+            {
+                MultiplyNumbers(first, second);
+            }
+            else if(command == "subtract")
+            {
+                SubtractNumbers(first, second);
+            }
+            else if(command == "divide")
+            {
+                DivideNumbers(first, second);
+            }
+        }
+
+        static void AddNumbers(int first, int second)
+        {
+            Console.WriteLine(first + second);
+        }
+        static void MultiplyNumbers(int first, int second)
+        {
+            Console.WriteLine(first * second);
+        }
+        static void SubtractNumbers(int first, int second)
+        {
+            Console.WriteLine(first - second);
+        }
+        static void DivideNumbers(int first, int second)
+        {
+            Console.WriteLine(first / second);
+        }
+    }
+}
