@@ -1,0 +1,52 @@
+using System;
+using System.Linq;
+
+namespace _11.Encrypt_Sort_and_Print_Array
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+
+            int sum = 0;
+            int letter = 0;
+            int[] sums = new int[n];
+            
+            for(int i = 0; i < n; i++)
+            {
+                string s = Console.ReadLine();
+
+                string[] names = new string[s.Length];
+
+                for (int y = 0; y < s.Length; y++)
+                {
+                    names[y] += s[y];
+                }
+                for (int k = 0; k < names.Length; k++)
+                {
+                    letter += char.Parse(names[k]);
+                    if(names[k] == "a" || names[k] == "o" || names[k] == "i" || names[k] == "e" || names[k] == "A" || names[k] == "O" || names[k] == "I" || names[k] == "E" || names[k] == "u" || names[k] == "U")
+                    {
+                        letter *= names.Length;
+                    }
+                    else
+                    {
+                        letter /= names.Length;
+                    }
+                    sum += letter;
+                    letter = 0;
+                }
+                sums[i] = sum;
+                sum = 0;
+            }
+
+            int[] asc = (from i in sums orderby i ascending select i).ToArray();
+
+            for(int i = 0; i < asc.Length; i++)
+            {
+                Console.WriteLine(asc[i]);
+            }
+        }
+    }
+}
