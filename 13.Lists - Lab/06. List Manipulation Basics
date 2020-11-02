@@ -1,0 +1,50 @@
+using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace DEMO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+
+            string input = Console.ReadLine();
+
+            while(input != "end")
+            {
+                string[] splitted = input.Split();
+                string command = splitted[0];
+                int index = int.Parse(splitted[1]);
+
+                if(command == "Add")
+                {
+                    numbers.Add(index);
+                }
+                else if(command == "Remove")
+                {
+                    numbers.Remove(index);
+                }
+                else if(command == "RemoveAt")
+                {
+                    numbers.RemoveAt(index);
+                }
+                else if(command == "Insert")
+                {
+                    int number = int.Parse(splitted[1]);
+                    index = int.Parse(splitted[2]);
+                    numbers.Insert(index, number);
+                }
+
+
+                input = Console.ReadLine();
+            }
+            Console.WriteLine(String.Join(" ", numbers));
+        }
+    }
+}
