@@ -1,0 +1,43 @@
+using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace DEMO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> result = new List<int>();
+            List<int> numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+
+            int sum = 0;
+
+            if(numbers.Count % 2 == 1)
+            {
+                for(int i = 0; i < numbers.Count / 2; i++)
+                {
+                    sum = numbers[i] + numbers[numbers.Count - i - 1];
+                    result.Add(sum);
+                }
+                int midIndex = (numbers.Count / 2);
+                result.Add(numbers[midIndex]);
+                Console.WriteLine(String.Join(" ", result));
+            }
+            else
+            {
+                for (int i = 0; i < numbers.Count / 2; i++)
+                {
+                    sum = numbers[i] + numbers[numbers.Count -i - 1];
+                    result.Add(sum);
+                }
+                
+                Console.WriteLine(String.Join(" ", result));
+            }
+        }
+    }
+}
