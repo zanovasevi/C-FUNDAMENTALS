@@ -1,0 +1,147 @@
+using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace DEMO
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+            bool isUsed = false;
+
+            string input = Console.ReadLine();
+
+            while(input != "end")
+            {
+                string[] splitted = input.Split();
+                string command = splitted[0];
+                
+
+                if(command == "Add")
+                {
+                    int index = int.Parse(splitted[1]);
+                    numbers.Add(index);
+                    isUsed = true;
+                }
+                else if(command == "Remove")
+                {
+                    int index = int.Parse(splitted[1]);
+                    numbers.Remove(index);
+                    isUsed = true;
+                }
+                else if(command == "RemoveAt")
+                {
+                    int index = int.Parse(splitted[1]);
+                    numbers.RemoveAt(index);
+                    isUsed = true;
+                }
+                else if(command == "Insert")
+                {
+                    int number = int.Parse(splitted[1]);
+                    int index = int.Parse(splitted[2]);
+                    numbers.Insert(index, number);
+                    isUsed = true;
+                }
+                else if(command == "Contains")
+                {
+                    int index = int.Parse(splitted[1]);
+                    if (numbers.Contains(index))
+                    {
+                        Console.WriteLine("Yes");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No such number");
+                    }
+                }
+                else if(command == "PrintEven")
+                {
+                    for(int i = 0; i < numbers.Count; i++)
+                    {
+                        if(numbers[i] % 2 == 0)
+                        {
+                            Console.Write(numbers[i] + " ");
+                        }
+                    }
+                    Console.WriteLine();
+                }
+                else if (command == "PrintOdd")
+                {
+                    for (int i = 0; i < numbers.Count; i++)
+                    {
+                        if (numbers[i] % 2 == 1)
+                        {
+                            Console.Write(numbers[i] + " ");
+                        }
+                    }
+                    Console.WriteLine();
+                }
+                else if(command == "GetSum")
+                {
+                    Console.WriteLine(numbers.Sum()); 
+                }
+                else if(command == "Filter")
+                {
+                    string condition = splitted[1];
+                    int number = int.Parse(splitted[2]);
+
+                    if(condition == "<")
+                    {
+                        for(int i = 0; i < numbers.Count; i++)
+                        {
+                            if(numbers[i] < number)
+                            {
+                                Console.Write(numbers[i] + " ");
+                            }
+                        }
+                        Console.WriteLine();
+                    }
+                    else if (condition == ">")
+                    {
+                        for (int i = 0; i < numbers.Count; i++)
+                        {
+                            if (numbers[i] > number)
+                            {
+                                Console.Write(numbers[i] + " ");
+                            }
+                        }
+                        Console.WriteLine();
+                    }
+                    else if (condition == ">=")
+                    {
+                        for (int i = 0; i < numbers.Count; i++)
+                        {
+                            if (numbers[i] >= number)
+                            {
+                                Console.Write(numbers[i] + " ");
+                            }
+                        }
+                        Console.WriteLine();
+                    }
+                    else if (condition == "<=")
+                    {
+                        for (int i = 0; i < numbers.Count; i++)
+                        {
+                            if (numbers[i] <= number)
+                            {
+                                Console.Write(numbers[i] + " ");
+                            }
+                        }
+                        Console.WriteLine();
+                    }
+                }
+                input = Console.ReadLine();
+            }
+            if(isUsed)
+            {
+                Console.WriteLine(String.Join(" ", numbers));
+            }
+        }
+    }
+}
