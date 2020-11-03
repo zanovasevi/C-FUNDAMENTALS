@@ -1,0 +1,53 @@
+using System;
+using System.Linq;
+
+namespace Demo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToArray();
+
+            double leftSum = 0;
+            double rightSum = 0;
+            string winner = "";
+
+            for(int l = 0; l < numbers.Length / 2; l++)
+            {
+                if(numbers[l] == 0)
+                {
+                    leftSum *= 0.8;
+                }
+                else
+                {
+                    leftSum += numbers[l];
+                }
+            }
+            for (int r = numbers.Length - 1; r > numbers.Length / 2; r--)
+            {
+                if (numbers[r] == 0)
+                {
+                    rightSum *= 0.8;
+                }
+                else
+                {
+                    rightSum += numbers[r];
+                }
+            }
+            if(leftSum < rightSum)
+            {
+                winner = "left";
+                Console.WriteLine($"The winner is {winner} with total time: {leftSum}");
+            }
+            else
+            {
+                winner = "right";
+                Console.WriteLine($"The winner is {winner} with total time: {rightSum}");
+            }
+        }
+    }
+}
