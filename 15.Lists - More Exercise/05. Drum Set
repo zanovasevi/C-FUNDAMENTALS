@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _12.Drum_Set
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double spendMoney = double.Parse(Console.ReadLine());
+            List<int> list = Console.ReadLine().Split().Select(int.Parse).ToList();
+            string input = Console.ReadLine();
+            List<int> secondList = new List<int>();
+
+            for(int i = 0; i < list.Count; i++)
+            {
+                secondList.Add(list[i]);
+            }
+            
+
+            while(input != "Hit it again, Gabsy!")
+            {
+                int hit = int.Parse(input);
+                for(int i = 0; i < list.Count; i++)
+                {
+                    list[i] -= hit;
+                    if(list[i] <= 0 && spendMoney > 0)
+                    {
+                        
+                        if(secondList[i] * 3 <= spendMoney)
+                        {
+                            list[i] = secondList[i];
+                            spendMoney -= secondList[i] * 3;
+                        }
+                        else
+                        {
+                            int y = i;
+                            list.Remove(list[i]);
+                            
+                            secondList.Remove(secondList[i]);
+                            i = y - 1;
+                        }
+                        
+                    }
+                }
+                input = Console.ReadLine();
+            }
+            Console.WriteLine(String.Join(" ", list));
+            Console.WriteLine($"Gabsy has {spendMoney:F2}lv.");
+        }
+    }
+}
