@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _11.Mixed_up_lists
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> n1 = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+            List<int> n2 = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+            List<int> result = new List<int>();
+
+            if(n2.Count < n1.Count)
+            {
+                for (int i = 0; i < n2.Count; i++)
+                {
+                    result.Add(n1[i]);
+                    result.Add(n2[n2.Count - i - 1]);
+                }
+                int first = n1[n1.Count - 2];
+                int second = n1[n1.Count - 1];
+
+                int min = Math.Min(first, second);
+                int max = Math.Max(first, second);
+
+                for (int i = 0; i < result.Count; i++)
+                {
+                    if (result[i] <= min || result[i] >= max)
+                    {
+                        result.Remove(result[i]);
+                        i = -1;
+                    }
+                }
+            }
+            else
+            {
+                for(int i = 0; i < n1.Count; i++)
+                {
+                    result.Add(n1[i]);
+                    result.Add(n2[n2.Count - i - 1]);
+                }
+                int first = n2[0];
+                int second = n2[1];
+
+                int min = Math.Min(first, second);
+                int max = Math.Max(first, second);
+
+                for(int i = 0; i < result.Count; i++)
+                {
+                    if(result[i] <= min || result[i] >= max)
+                    {
+                        result.Remove(result[i]);
+                        i = -1;
+                    }
+                }
+            }
+            result.Sort();
+            Console.WriteLine(String.Join(" ", result));
+        }
+    }
+}
