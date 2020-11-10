@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _11.Ranking
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var dictContest = new Dictionary<string, string>();
+            var sortedDict = new SortedDictionary<string, Dictionary<string, int>>();
+
+            string input = Console.ReadLine();
+
+            while (input != "end of contests")
+            {
+                string[] splitted = input.Split(":");
+                string contest = splitted[0];
+                string passForContest = splitted[1];
+
+                if (!dictContest.ContainsKey(contest))
+                {
+                    dictContest.Add(contest, passForContest);
+                }
+
+                input = Console.ReadLine();
+            }
+
+            string secondInput = Console.ReadLine();
+
+            while (secondInput != "end of submissions")
+            {
+                string[] splitted = secondInput.Split("=>");
+                string contest = splitted[0];
+                string pass = splitted[1];
+                string userName = splitted[2];
+                int points = int.Parse(splitted[3]);
+
+
+                if (dictContest.ContainsKey(contest))
+                {
+                    if (dictContest[contest].Contains(pass))
+                    {
+                        if(sortedDict.ContainsKey(userName))
+                        {
+                            if(sortedDict[userName].ContainsKey(contest) && sortedDict.ContainsKey(userName))
+                            {
+                                if(sortedDict[userName][contest] < points)
+                                {
+                                    sortedDict[userName][contest] = points;
+                                    secondInput = Console.ReadLine();
+                                    continue;
+                                    
+                                }
+                                secondInput = Console.ReadLine();
+                                continue;
+                            }
+
+                            sortedDict[userName].Add(contest, points);
+                            secondInput = Console.ReadLine();
+                            continue;
+                        }
+
+                        sortedDict.Add(userName, new Dictionary<string, int>());
+                        sortedDict[userName].Add(contest, points);
+
+                    }
+
+                }
+                secondInput = Console.ReadLine();
+            }
+
+            var usernameTotalPoints = new Dictionary<string, int>();
+            foreach (var pair in sortedDict)
+            {
+                usernameTotalPoints[pair.Key] = pair.Value.Values.Sum();
+            }
+            string bestName = usernameTotalPoints.Keys.Max();
+            int bestPoints = usernameTotalPoints.Values.Max();
+
+            foreach(var pair in usernameTotalPoints)
+            {
+                if(pair.Value == bestPoints)
+                {
+                    Console.WriteLine($"Best candidate is {pair.Key} with total {pair.Value} points.");
+                }
+            }
+            Console.WriteLine("Ranking:");
+            foreach (var name in sortedDict)
+            {
+                Dictionary<string, int> dict = name.Value;
+                dict = dict.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+                Console.WriteLine("{0}", name.Key);
+                foreach (var kvp in dict)
+                {
+                    Console.WriteLine("#  {0} -> {1}", kvp.Key, kvp.Value);
+                }
+
+            }
+        }
+    }
+}
