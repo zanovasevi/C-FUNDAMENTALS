@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Demo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var dictionary = new Dictionary<string, Dictionary<string, int>>();
+            var usersTotalPoint = new Dictionary<string, int>();
+
+            while (true)
+            {
+                string text = Console.ReadLine();
+
+                if (text == "no more time")
+                {
+                    break;
+                }
+                else
+                {
+                    string[] info = text
+                        .Split(" -> ");
+
+                    string name = info[0];
+                    string contest = info[1];
+                    int points = int.Parse(info[2]);
+                    bool itMustSum = false;
+
+                    if (!dictionary.ContainsKey(contest))
+                    {
+                        dictionary[contest] = new Dictionary<string, int>();
+                        dictionary[contest][name] = points;
+                        itMustSum = true;
+                    }
+                    else
+                    {
+                        if (!dictionary[contest].ContainsKey(name))
+                        {
+                            dictionary[contest][name] = points;
+                            itMustSum = true;
+                        }
+                        else
+                        {
+                            int currentPoints = dictionary[contest][name];
+
+                            if (currentPoints < points)
+                            {
+                                dictionary[contest][name] = points;
+                                points = points - currentPoints; // Тук вадя от новите точки старите за да получа само разликата, която по-късно да добавя в usersTotalPoint
+                                itMustSum = true;
+                            }
+                        }
+                    }
+
+                    if (!usersTotalPoint.ContainsKey(name))
+                    {
+                        usersTotalPoint[name] = 0;
+                    }
+                    // Добавям точките в втория речник, само ако е изпълнено условието при горните проверки т.е. itMustSum е true
+                    if (itMustSum)
+                    {
+                        usersTotalPoint[name] += points;
+                    }
+
+                }
+            }
+
+            foreach (var kvp in dictionary)
+            {
+                Console.WriteLine($"{kvp.Key}: {kvp.Value.Count()} participants");
+
+                int counter = 1;
+
+                foreach (var item in kvp.Value
+                    .OrderByDescending(x => x.Value)
+                    .ThenBy(x => x.Key))
+                {
+                    Console.WriteLine($"{counter}. {item.Key} <::> {item.Value}");
+                    counter++;
+                }
+            }
+
+            Console.WriteLine($"Individual standings:");
+
+            int counterForUsers = 1;
+
+            foreach (var kvp in usersTotalPoint
+                .OrderByDescending(x => x.Value)
+                .ThenBy(x => x.Key))
+            {
+                Console.WriteLine($"{counterForUsers}. {kvp.Key} -> {kvp.Value}");
+                counterForUsers++;
+            }
+        }
+    }
+}
