@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<string, Dictionary<string, int>> dictionary = new Dictionary<string, Dictionary<string, int>>();
+            string name = "";
+            string position = "";
+            int skill = 0;
+            while (true)
+            {
+                List<string> input = Console.ReadLine().Split(new char[] { ' ', '-', '>' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                if (input[0] == "Season")
+                    break;
+
+                if (!(input.Contains("vs")))
+                {
+                    name = input[0];
+                    position = input[1];
+                    skill = int.Parse(input[2]);
+
+                    if (dictionary.ContainsKey(name))
+                    {
+                        if (dictionary[name].ContainsKey(position))
+                        {
+                            if (dictionary[name][position] < skill)
+                            {
+                                dictionary[name][position] = skill;
+                            }
+                        }
+                        else
+                        {
+                            dictionary[name][position] = skill;
+                        }
+
+                    }
+                    else
+                    {
+                        /*dictionary.Add(name, new Dictionary<string, int>());
+                        dictionary[name].Add(position, skill);*/
+                        Dictionary<string, int> assistDic = new Dictionary<string, int>();
+                        assistDic.Add(position, skill);
+                        dictionary[name] = assistDic;
+                    }
+                }
+                else
+                {
+                    string playerOne = input[0];
+                    string playerTwo = input[2];
+                    if (dictionary.ContainsKey(playerOne) && dictionary.ContainsKey(playerTwo))
+                    {
+                        bool defeated = false;
+                        foreach (var role in dictionary[playerOne])
+                        {
+                            foreach (var pos in dictionary[playerTwo])
+                            {
+                                if (role.Key == pos.Key)
+                                {
+                                    if (dictionary[playerOne].Values.Sum() > dictionary[playerTwo].Values.Sum())
+                                    {
+                                        dictionary.Remove(playerTwo);
+                                        defeated = true;
+                                        break;
+                                    }
+                                    else if (dictionary[playerOne].Values.Sum() < dictionary[playerTwo].Values.Sum())
+                                    {
+                                        dictionary.Remove(playerOne);
+                                        defeated = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (defeated)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (var playa in dictionary.OrderByDescending(x => x.Value.Values.Sum()).ThenBy(x => x.Key))
+            {
+                Console.WriteLine($"{playa.Key}: {playa.Value.Values.Sum()} skill");
+                foreach (var pair in playa.Value.OrderByDescending(x => x.Value).ThenBy(x => x.Key))
+                {
+                    Console.WriteLine($"- {pair.Key} <::> {pair.Value}");
+                }
+            }
+        }
+    }
+}
