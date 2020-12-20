@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _08.Company_Users
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var register = new SortedDictionary<string, List<string>>();
+
+            string input = Console.ReadLine();
+
+            while(input != "End")
+            {
+                string[] splitted = input.Split(" -> ");
+                string companyName = splitted[0];
+                string userID = splitted[1];
+
+                if(!register.ContainsKey(companyName))
+                {
+                    register.Add(companyName, new List<string>());
+                    register[companyName].Add(userID);
+                }
+                else
+                {
+                    if(!register[companyName].Contains(userID))
+                    {
+                        register[companyName].Add(userID);
+                    }
+                }
+
+                input = Console.ReadLine();
+            }
+
+            foreach(var pair in register)
+            {
+                Console.WriteLine(pair.Key);
+                foreach(var user in pair.Value)
+                {
+                    Console.WriteLine($"-- {user}");
+                }
+            }
+        }
+    }
+}
