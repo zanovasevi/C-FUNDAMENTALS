@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _05.SoftUni_Parking
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var register = new Dictionary<string, Register>();
+
+            int n = int.Parse(Console.ReadLine());
+
+            for(int i = 0; i < n; i++)
+            {
+                string input = Console.ReadLine();
+                string[] splitted = input.Split();
+                string command = splitted[0];
+                string name = splitted[1];
+
+                if(command == "register")
+                {
+                    string regNumber = splitted[2];
+
+                    Register oneRegistration = new Register(name, regNumber);
+
+                    if(register.ContainsKey(name))
+                    {
+                        Console.WriteLine($"ERROR: already registered with plate number {regNumber}"); 
+                    }
+                    else
+                    {
+                        register.Add(name, oneRegistration);
+                        Console.WriteLine($"{name} registered {regNumber} successfully");
+                    }
+                }
+                else if(command == "unregister")
+                {
+                    if(!register.ContainsKey(name))
+                    {
+                        Console.WriteLine($"ERROR: user {name} not found");
+                    }
+                    else
+                    {
+                        register.Remove(name);
+                        Console.WriteLine($"{name} unregistered successfully");
+                    }
+                }
+            }
+
+            foreach(var pair in register)
+            {
+                Console.WriteLine(pair.Key + " => " + pair.Value.RegNumber);
+            }
+        }
+
+        public class Register
+        {
+            public string Name { get; set; }
+            public string RegNumber { get; set; }
+
+            public Register(string name, string regNumber)
+            {
+                this.Name = name;
+                this.RegNumber = regNumber;
+            }
+        }
+    }
+}
